@@ -20,9 +20,14 @@ $(function() {
         password: passWord
       },
       success: function(res) {
-        console.log(res);
+        // console.log(res);
         if (res.code === 200) {
+          localStorage.setItem('token',res.token);
           location.href = "./index.html";
+        } else {
+          $(".modal-body").text(res.msg);
+          $("#exampleModal").modal();
+          return;
         }
       }
     });
